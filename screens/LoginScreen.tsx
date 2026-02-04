@@ -1,19 +1,26 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { RootStackParamList } from '../types';
-import { login } from '../utils/auth';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React, { useState } from "react";
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { RootStackParamList } from "../types";
+import { login } from "../utils/auth";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
 export default function LoginScreen({ navigation }: Props) {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleLogin = async () => {
     if (!email || !password) {
-      Alert.alert('Error', 'Please fill in all fields');
+      Alert.alert("Error", "Please fill in all fields");
       return;
     }
 
@@ -22,16 +29,16 @@ export default function LoginScreen({ navigation }: Props) {
     setLoading(false);
 
     if (result.success) {
-      navigation.replace('Home');
+      navigation.replace("Home");
     } else {
-      Alert.alert('Login Failed', result.error || 'An error occurred');
+      Alert.alert("Login Failed", result.error || "An error occurred");
     }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-      
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -40,7 +47,7 @@ export default function LoginScreen({ navigation }: Props) {
         autoCapitalize="none"
         keyboardType="email-address"
       />
-      
+
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -48,19 +55,19 @@ export default function LoginScreen({ navigation }: Props) {
         onChangeText={setPassword}
         secureTextEntry
       />
-      
-      <TouchableOpacity 
+
+      <TouchableOpacity
         style={styles.button}
         onPress={handleLogin}
         disabled={loading}
       >
         <Text style={styles.buttonText}>
-          {loading ? 'Logging in...' : 'Login'}
+          {loading ? "Logging in..." : "Login"}
         </Text>
       </TouchableOpacity>
-      
-      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-        <Text style={styles.linkText}>Don't have an account? Sign up</Text>
+
+      <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+        <Text style={styles.linkText}>Don&apos;t have an account? Sign up</Text>
       </TouchableOpacity>
     </View>
   );
@@ -69,39 +76,39 @@ export default function LoginScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 30,
-    textAlign: 'center',
+    textAlign: "center",
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     padding: 15,
     borderRadius: 8,
     marginBottom: 15,
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: "#007AFF",
     padding: 15,
     borderRadius: 8,
     marginTop: 10,
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   linkText: {
-    color: '#007AFF',
-    textAlign: 'center',
+    color: "#007AFF",
+    textAlign: "center",
     marginTop: 20,
   },
 });

@@ -1,25 +1,32 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useState } from 'react';
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { RootStackParamList } from '../types';
-import { signup } from '../utils/auth';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React, { useState } from "react";
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { RootStackParamList } from "../types";
+import { signup } from "../utils/auth";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
+type Props = NativeStackScreenProps<RootStackParamList, "Signup">;
 
 export default function SignupScreen({ navigation }: Props) {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSignup = async () => {
     if (!email || !password || !confirmPassword) {
-      Alert.alert('Error', 'Please fill in all fields');
+      Alert.alert("Error", "Please fill in all fields");
       return;
     }
 
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
+      Alert.alert("Error", "Passwords do not match");
       return;
     }
 
@@ -28,16 +35,16 @@ export default function SignupScreen({ navigation }: Props) {
     setLoading(false);
 
     if (result.success) {
-      navigation.replace('Home');
+      navigation.replace("Home");
     } else {
-      Alert.alert('Signup Failed', result.error || 'An error occurred');
+      Alert.alert("Signup Failed", result.error || "An error occurred");
     }
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign Up</Text>
-      
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -46,7 +53,7 @@ export default function SignupScreen({ navigation }: Props) {
         autoCapitalize="none"
         keyboardType="email-address"
       />
-      
+
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -54,7 +61,7 @@ export default function SignupScreen({ navigation }: Props) {
         onChangeText={setPassword}
         secureTextEntry
       />
-      
+
       <TextInput
         style={styles.input}
         placeholder="Confirm Password"
@@ -62,18 +69,18 @@ export default function SignupScreen({ navigation }: Props) {
         onChangeText={setConfirmPassword}
         secureTextEntry
       />
-      
-      <TouchableOpacity 
+
+      <TouchableOpacity
         style={styles.button}
         onPress={handleSignup}
         disabled={loading}
       >
         <Text style={styles.buttonText}>
-          {loading ? 'Creating account...' : 'Sign Up'}
+          {loading ? "Creating account..." : "Sign Up"}
         </Text>
       </TouchableOpacity>
-      
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text style={styles.linkText}>Already have an account? Login</Text>
       </TouchableOpacity>
     </View>
@@ -83,39 +90,39 @@ export default function SignupScreen({ navigation }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 30,
-    textAlign: 'center',
+    textAlign: "center",
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     padding: 15,
     borderRadius: 8,
     marginBottom: 15,
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#34C759',
+    backgroundColor: "#34C759",
     padding: 15,
     borderRadius: 8,
     marginTop: 10,
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   linkText: {
-    color: '#007AFF',
-    textAlign: 'center',
+    color: "#007AFF",
+    textAlign: "center",
     marginTop: 20,
   },
 });

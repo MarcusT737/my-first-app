@@ -1,7 +1,7 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { useEffect, useState } from 'react';
-import { RootStackParamList } from './types';
-import { checkAuth } from './utils/auth';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useEffect, useState } from "react";
+import { RootStackParamList } from "./types";
+import { checkAuth } from "./utils/auth";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -25,7 +25,7 @@ export default function App() {
 
   return (
     // <NavigationContainer>
-    //   <Stack.Navigator 
+    //   <Stack.Navigator
     //     initialRouteName={isLoggedIn ? "Home" : "Welcome"}
     //     screenOptions={{
     //       headerStyle: { backgroundColor: '#007AFF' },
@@ -33,15 +33,15 @@ export default function App() {
     //       headerTitleStyle: { fontWeight: 'bold' },
     //     }}
     //   >
-    //     <Stack.Screen 
-    //       name="Welcome" 
+    //     <Stack.Screen
+    //       name="Welcome"
     //       component={WelcomeScreen}
     //       options={{ headerShown: false }}
     //     />
     //     <Stack.Screen name="Login" component={LoginScreen} />
     //     <Stack.Screen name="Signup" component={SignupScreen} />
-    //     <Stack.Screen 
-    //       name="Home" 
+    //     <Stack.Screen
+    //       name="Home"
     //       component={HomeScreen}
     //       options={{ headerLeft: () => null }}
     //     />
